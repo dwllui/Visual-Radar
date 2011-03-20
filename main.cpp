@@ -174,15 +174,18 @@ void convert2text(string rgbfilename, string depthfilename, string suffix, int i
  		//going through both images
 		vector<Scalar> color;
 		vector<Mat> coordinates;
+
+		Scalar PColor;
+		Mat temp(3,1,CV_32F);
+		Mat P3D2(3,1,CV_32F);
+		int rgb_x, rgb_y;
+
 		for(int j=0;j<rgb.rows;j++)
 		{
 			for(int k=0;k<rgb.cols;k++)
 			{
-				Scalar PColor;
+
 				Mat P3D(3,1,CV_32F);
-				Mat temp(3,1,CV_32F);
-				Mat P3D2(3,1,CV_32F);
-				int rgb_x, rgb_y;
 				ushort depthValue = (float)depth.at<ushort>(j,k);
 				if(depthValue < 2047)
 				{
